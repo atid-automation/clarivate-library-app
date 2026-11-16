@@ -1,7 +1,7 @@
 import { expect, test } from './fixtures';
 import { uniqueIsbn } from './helpers';
 
-// בדיקות API עם ה-fixture `request` של Playwright: בלי דפדפן, מהירות ויציבות
+// API tests with Playwright's `request` fixture: no browser, fast and stable
 test.describe('POST /api/books', () => {
   test('מוסיף ספר תקין @smoke', async ({ request, booksApi }) => {
     const res = await request.post('/api/books', {

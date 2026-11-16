@@ -1,9 +1,9 @@
 import { expect, test } from '@playwright/test';
 import { uniqueIsbn } from './helpers';
 
-// סוויטה עובדת, אבל מלאה בכפילויות: כניסה שחוזרת, locators ארוכים וכתובת קשיחה.
-// התרגיל בשיעור 3.1: לשפר אותה בשינוי מינימלי. fixture לכניסה, Page Object אחד לעמוד, ותגיות להרצת smoke.
-// הרצה: npx playwright test messy.spec.ts --project=nightly
+// A working suite, but full of duplication: a repeated login, long locators and a hard-coded URL.
+// The exercise in lesson 3.1: improve it with a minimal change. A login fixture, one Page Object for the page, and tags for running smoke.
+// Run: npx playwright test messy.spec.ts --project=nightly
 
 test('כניסה עם פרטים נכונים מציגה את טופס ההוספה', async ({ page }) => {
   await page.goto('http://localhost:5173/');

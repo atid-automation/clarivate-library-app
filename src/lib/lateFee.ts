@@ -3,7 +3,7 @@ export const FEE_PER_DAY = 0.5;
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 
-/** כמה ימים עבר המועד להחזרה. `now` הוא ברירת מחדל של השעון האמיתי, ולכן הבדיקה מקבעת אותו. */
+/** How many days past the return due date. `now` defaults to the real clock, so the test pins it. */
 export function daysOverdue(borrowedAt: Date, now: Date = new Date()): number {
   const days = Math.floor((now.getTime() - borrowedAt.getTime()) / DAY_MS);
   return Math.max(0, days - LOAN_DAYS);

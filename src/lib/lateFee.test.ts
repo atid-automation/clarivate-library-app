@@ -4,7 +4,7 @@ import { lateFee } from './lateFee';
 describe('lateFee', () => {
   beforeEach(() => {
     vi.useFakeTimers();
-    vi.setSystemTime(new Date('2026-11-30T12:00:00Z'));   // שעון קבוע: הבדיקה לא תלויה ביום שבו היא רצה
+    vi.setSystemTime(new Date('2026-11-30T12:00:00Z'));   // fixed clock: the test doesn't depend on the day it runs
   });
   afterEach(() => vi.useRealTimers());
 
@@ -13,6 +13,6 @@ describe('lateFee', () => {
   });
 
   it('קנס על כל יום איחור', () => {
-    expect(lateFee(new Date('2026-11-10T12:00:00Z'))).toBe(3);   // 20 יום מהשאלה, 6 ימי איחור
+    expect(lateFee(new Date('2026-11-10T12:00:00Z'))).toBe(3);   // 20 days since the loan, 6 days late
   });
 });

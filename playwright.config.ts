@@ -14,11 +14,11 @@ export default defineConfig({
     { command: 'npm run dev', url: 'http://localhost:5173', reuseExistingServer: true },
   ],
   projects: [
-    // ב-PR רצות רק בדיקות ה-smoke, מהר ומול mock
+    // On PRs only the smoke tests run, fast and against mock
     { name: 'pr', grep: /@smoke/, use: { ...devices['Desktop Chrome'] } },
-    // בלילה רצות כל הבדיקות (עם TEST_MODE=real: מול השרת האמיתי), חוץ מהטסטים השבורים בכוונה של הסדנה
+    // Nightly runs all tests (with TEST_MODE=real: against the real server), except the workshop's intentionally broken tests
     { name: 'nightly', grepInvert: /@broken/, use: { ...devices['Desktop Chrome'] } },
-    // רק לתרגיל הדיבוג בסדנה: הטסטים השבורים בכוונה (e2e/broken.spec.ts)
+    // Only for the workshop debugging exercise: the intentionally broken tests (e2e/broken.spec.ts)
     { name: 'workshop', grep: /@broken/, use: { ...devices['Desktop Chrome'] } },
   ],
 });

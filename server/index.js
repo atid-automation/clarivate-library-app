@@ -45,9 +45,6 @@ export const server = http.createServer(async (req, res) => {
   }
 
   if (req.method === 'GET' && path === '/api/books') {
-    // לצורכי הסדנה בלבד: כותרת x-demo-delay מדמה שרת איטי (באלפיות שנייה, עד 2000)
-    const delay = Number(req.headers['x-demo-delay'] ?? 0);
-    if (delay > 0 && process.env.NODE_ENV !== 'production') await new Promise((r) => setTimeout(r, Math.min(delay, 2000)));
     const q = (url.searchParams.get('q') ?? '').trim().toLowerCase();
     const found = q ? books.filter((b) => [b.title, b.author, b.isbn].some((v) => v.toLowerCase().includes(q))) : books;
     return send(res, 200, found);

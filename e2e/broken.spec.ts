@@ -1,10 +1,10 @@
 import { expect, test } from '@playwright/test';
 import { uniqueIsbn } from './helpers';
 
-// שלושה טסטים שבורים בכוונה, לתרגיל האבחון בשיעור 2.3. לכל אחד סימפטום אחר.
-// הרצה:   npx playwright test broken.spec.ts
-// חקירה:  npx playwright show-report   או   npx playwright test broken.spec.ts --ui
-// המשימה: לכל טסט, מה הסימפטום, מה הסיבה (לפי ה-trace), ורק אחר כך תיקון.
+// Three intentionally broken tests for the diagnosis exercise in lesson 2.3. Each has a different symptom.
+// Run:     npx playwright test broken.spec.ts
+// Inspect: npx playwright show-report   or   npx playwright test broken.spec.ts --ui
+// Task: for each test, state the symptom, the cause (from the trace), and only then the fix.
 
 test('הוספת ספר מציגה אותו ברשימה @broken', async ({ page }) => {
   const title = `Broken Demo ${Date.now()}`;
@@ -21,7 +21,7 @@ test('הוספת ספר מציגה אותו ברשימה @broken', async ({ page
 });
 
 test('הרשימה מציגה את Dune אחרי הטעינה @broken', async ({ page }) => {
-  await page.setExtraHTTPHeaders({ 'x-demo-delay': '500' }); // מדמה שרת איטי
+  await page.setExtraHTTPHeaders({ 'x-demo-delay': '500' }); // simulates a slow server
   await page.goto('/');
 
   const count = await page.getByRole('cell', { name: 'Dune', exact: true }).count();

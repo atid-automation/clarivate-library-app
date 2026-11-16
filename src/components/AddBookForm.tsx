@@ -4,12 +4,12 @@ import type { NewBook } from '../api';
 
 type Props = {
   onAdd: (book: NewBook) => Promise<void>;
-  /** כשהוא קיים, הטופס עובד במצב עריכה של ספר קיים. */
+  /** When present, the form works in edit mode for an existing book. */
   initial?: NewBook;
   onCancel?: () => void;
 };
 
-/** טופס הוספה או עריכה של ספר. הוא לא קורא ל-fetch בעצמו: `onAdd` מוזרק, ולכן קל לבדוק אותו. */
+/** A form for adding or editing a book. It doesn't call fetch itself: `onAdd` is injected, so it is easy to test. */
 export function AddBookForm({ onAdd, initial, onCancel }: Props) {
   const editing = !!initial;
   const [title, setTitle] = useState(initial?.title ?? '');

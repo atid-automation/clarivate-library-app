@@ -8,6 +8,6 @@ export default defineConfig({
     environment: 'jsdom',
     globals: true,
     setupFiles: ['./src/test-setup.ts'],
-    include: ['src/**/*.test.{ts,tsx}'],      // בדיקות Playwright נמצאות ב-e2e/ ורצות בנפרד
+    include: ['src/**/*.test.{ts,tsx}'],      // Playwright tests live in e2e/ and run separately
   },
 });

@@ -1,19 +1,19 @@
 import { test as base, expect } from '@playwright/test';
 
-/** TEST_MODE=real: מול השרת האמיתי. ברירת המחדל: mock, מהיר ולא תלוי בסביבה. */
+/** TEST_MODE=real: runs against the real server. Default: mock, fast and environment-independent. */
 export const REAL = process.env.TEST_MODE === 'real';
 
 type Fixtures = { booksApi: { token: string } };
 
 export const test = base.extend<Fixtures>({
-  // fixture שנותן טוקן כניסה דרך ה-API, בלי לעבור על מסך הכניסה
+  // fixture that provides a login token via the API, without going through the login screen
   booksApi: async ({ request }, use) => {
     const res = await request.post('/api/login', { data: { username: 'librarian', password: 'secret' } });
     expect(res.ok()).toBeTruthy();
     await use({ token: (await res.json()).token });
   },
 
-  // ב-mock: מחליף את תשובת החיפוש בתשובה קבועה. אחרת: לא עושה כלום, והבקשות הולכות לשרת
+  // In mock mode: replaces the search response with a fixed one. Otherwise: does nothing, and requests go to the server
   page: async ({ page }, use) => {
     if (!REAL) {
       await page.route('**/api/books?*', (route) =>
