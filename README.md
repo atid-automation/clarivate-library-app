@@ -31,6 +31,15 @@ npm run test:pr          # Playwright: רק @smoke, מול mock
 npm run test:nightly     # Playwright: הכול, מול השרת האמיתי (TEST_MODE=real)
 ```
 
+## קבצי התרגילים בסדנה
+
+| קובץ | לאיזה תרגיל | הרצה |
+|---|---|---|
+| `e2e/broken.spec.ts` | אבחון שלושה טסטים שבורים (שיעור 2.3) | `npx playwright test broken.spec.ts` |
+| `e2e/messy.spec.ts` | ריפקטור סוויטה עם כפילויות (שיעור 3.1) | `npx playwright test messy.spec.ts --project=nightly` |
+
+הטסטים השבורים מסומנים `@broken` ורצים רק בפרויקט `workshop`, כך שהם לא נכללים בהרצת `test:pr` או `test:nightly`.
+
 ## ההדגמות בסדנה
 
 כל הדגמה מתחילה מתג (tag) ב-git, כדי שכשל בהדגמה אחת לא יפיל את הבאות. התגים ייווצרו כשהפרקים ייכתבו: `start`, `after-2-1`, `after-3-1` וכן הלאה.

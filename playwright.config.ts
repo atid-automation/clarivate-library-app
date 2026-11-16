@@ -16,7 +16,9 @@ export default defineConfig({
   projects: [
     // ב-PR רצות רק בדיקות ה-smoke, מהר ומול mock
     { name: 'pr', grep: /@smoke/, use: { ...devices['Desktop Chrome'] } },
-    // בלילה רצות כל הבדיקות (עם TEST_MODE=real: מול השרת האמיתי)
-    { name: 'nightly', use: { ...devices['Desktop Chrome'] } },
+    // בלילה רצות כל הבדיקות (עם TEST_MODE=real: מול השרת האמיתי), חוץ מהטסטים השבורים בכוונה של הסדנה
+    { name: 'nightly', grepInvert: /@broken/, use: { ...devices['Desktop Chrome'] } },
+    // רק לתרגיל הדיבוג בסדנה: הטסטים השבורים בכוונה (e2e/broken.spec.ts)
+    { name: 'workshop', grep: /@broken/, use: { ...devices['Desktop Chrome'] } },
   ],
 });
