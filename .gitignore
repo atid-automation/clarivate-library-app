@@ -1,0 +1,10 @@
+node_modules
+dist
+playwright-report
+test-results
+
+# פתרונות התרגילים: נשארים אצל המרצה ולא עולים לריפו של המשתתפים
+solutions/
+e2e/search.spec.ts
+e2e/add-book.spec.ts
+e2e/manage-book.spec.ts

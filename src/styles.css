@@ -1,0 +1,177 @@
+/* עיצוב אפליקציית הספרייה. כתובת RTL, בלי תלות בגופנים חיצוניים. */
+:root {
+  --bg: #f6f7fb;
+  --surface: #ffffff;
+  --ink: #161a2b;
+  --ink-2: #4a5170;
+  --ink-3: #7b819c;
+  --line: #e3e6f0;
+  --accent: #4338ca;
+  --accent-2: #0d9488;
+  --accent-soft: #eef0ff;
+  --danger: #b42318;
+  --danger-soft: #fdecea;
+  --radius: 14px;
+  --shadow: 0 1px 2px rgba(22, 26, 43, .05), 0 8px 24px rgba(22, 26, 43, .06);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f1220;
+    --surface: #181c30;
+    --ink: #eef0fb;
+    --ink-2: #b6bbd6;
+    --ink-3: #8189ab;
+    --line: #2a3050;
+    --accent: #8b93ff;
+    --accent-soft: #232850;
+    --danger: #ff8a80;
+    --danger-soft: #3a1f26;
+    --shadow: none;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Heebo', 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* סרגל עליון */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px clamp(16px, 4vw, 40px);
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+}
+.brand { display: flex; align-items: center; gap: 12px; }
+.brand .mark {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  font-size: 20px;
+}
+.brand h1 { margin: 0; font-size: 20px; letter-spacing: -.01em; }
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* תוכן */
+.container {
+  display: grid;
+  gap: 20px;
+  width: min(100%, 920px);
+  margin: 28px auto 56px;
+  padding: 0 clamp(16px, 4vw, 24px);
+}
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 22px clamp(16px, 3vw, 26px);
+}
+.card h2 { margin: 0 0 16px; font-size: 18px; }
+.card-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
+.card-head h2 { margin: 0; }
+.count { color: var(--ink-3); font-size: 14px; }
+
+/* טפסים */
+.form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px; align-items: end; }
+.form-row { display: flex; gap: 12px; align-items: end; flex-wrap: wrap; }
+.field { display: grid; gap: 6px; font-size: 14px; font-weight: 600; color: var(--ink-2); flex: 1 1 200px; }
+.field input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--bg);
+  color: var(--ink);
+  font: inherit;
+  font-weight: 400;
+  transition: border-color .15s, box-shadow .15s;
+}
+.field input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); background: var(--surface); }
+
+.btn {
+  padding: 10px 20px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background: var(--accent);
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: filter .15s, transform .05s;
+}
+.btn:hover:not(:disabled) { filter: brightness(1.08); }
+.btn:active:not(:disabled) { transform: translateY(1px); }
+.btn:disabled { opacity: .45; cursor: not-allowed; }
+.btn.secondary { background: var(--accent-soft); color: var(--accent); }
+.form-actions { display: flex; justify-content: flex-end; margin-top: 16px; }
+
+.hint { margin: 12px 0 0; font-size: 14px; color: var(--ink-3); }
+
+/* הודעות שגיאה */
+.alert {
+  margin: 12px 0 0;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: var(--danger-soft);
+  color: var(--danger);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* טבלה */
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; }
+table { width: 100%; border-collapse: collapse; font-size: 15px; }
+th, td { padding: 12px 16px; text-align: start; }
+thead th { background: var(--bg); color: var(--ink-2); font-size: 13px; font-weight: 700; border-bottom: 1px solid var(--line); }
+tbody tr + tr td { border-top: 1px solid var(--line); }
+tbody tr:hover { background: var(--accent-soft); }
+td.isbn { font-variant-numeric: tabular-nums; color: var(--ink-3); direction: ltr; text-align: end; unicode-bidi: plaintext; }
+.empty { margin: 0; padding: 28px 16px; text-align: center; color: var(--ink-3); }
+
+/* סרגל משתמש, יצירת ISBN ופעולות בטבלה */
+.session { display: flex; align-items: center; gap: 10px; }
+.isbn-field { display: flex; align-items: end; gap: 8px; }
+.isbn-field > .field { flex: 1; }
+.form-actions { gap: 10px; }
+.btn.small { padding: 5px 12px; font-size: 13px; }
+.btn.danger { background: var(--danger); color: #fff; }
+td.actions { text-align: end; white-space: nowrap; }
+td.actions .btn + .btn { margin-inline-start: 6px; }
+
+/* הודעת הצלחה */
+.notice {
+  margin: 12px 0 0;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: #e6f6f1;
+  color: #0b6b5f;
+  font-size: 14px;
+  font-weight: 600;
+}
+@media (prefers-color-scheme: dark) { .notice { background: #12332e; color: #6ee7d3; } }
