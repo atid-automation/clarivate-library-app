@@ -21,6 +21,7 @@ test('הוספת ספר מציגה אותו ברשימה @broken', async ({ page
 });
 
 test('הרשימה מציגה את Dune אחרי הטעינה @broken', async ({ page }) => {
+  await page.setExtraHTTPHeaders({ 'x-demo-delay': '500' }); // מדמה שרת איטי
   await page.goto('/');
 
   const count = await page.getByRole('cell', { name: 'Dune', exact: true }).count();
