@@ -8,3 +8,9 @@ solutions/
 e2e/search.spec.ts
 e2e/add-book.spec.ts
 e2e/manage-book.spec.ts
+
+# קבצי הדגמה למרצה בלבד
+scripts/
+e2e/demo-before.spec.ts
+e2e/demo-after.spec.ts
+e2e/demo-flaky.spec.ts
