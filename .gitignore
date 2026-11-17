@@ -14,3 +14,4 @@ scripts/
 e2e/demo-before.spec.ts
 e2e/demo-after.spec.ts
 e2e/demo-flaky.spec.ts
+e2e/demo-setup.spec.ts
